@@ -1,0 +1,13 @@
+<IfModule mod_suphp.c>
+    suPHP_ConfigPath /opt/phpstable/lib
+</IfModule>
+
+
+<IfModule mod_rewrite.c>
+   RewriteEngine On
+   # 301 --- affiliate/ => helpdesk2
+	RewriteCond %{REQUEST_URI}  !(affiliate) [NC]
+   RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+# Use PHPstable as default
+AddHandler application/x-httpd-php-stable .php

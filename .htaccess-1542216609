@@ -1,0 +1,12 @@
+# BEGIN custom php.ini PHP54
+<IfModule mod_suphp.c>
+    suPHP_ConfigPath /home2/ganeshcro/management.glocify.org
+</IfModule>
+# END custom php.ini
+
+<IfModule mod_rewrite.c>
+   RewriteEngine On
+   # 301 --- affiliate/ => helpdesk2
+	RewriteCond %{REQUEST_URI}  !(affiliate) [NC]
+   RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
