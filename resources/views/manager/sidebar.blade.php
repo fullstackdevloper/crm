@@ -78,7 +78,7 @@
                                      <ul class="sub-menu-de">
 									
 									  <li><a class="{{classActivePath('adduser')}}" href="{{ URL::to('manager/profile') }}" ><i class="fa fa-user-md"></i>Profile</a></li>
-									  <li><a class="{{classActivePath('adduser')}}" href="{{ URL::to('manager/upworks') }}" ><i class="fa fa-underline"></i>Upworks</a></li>
+									  <li><a class="{{classActivePath('adduser')}}" href="{{ URL::to('manager/upworks') }}" ><i class="fa fa-underline"></i>Upwork</a></li>
 										<li><a  href="{{ URL::to('manager/bidders') }}" ><i class="fa fa-male"></i>Manage BDE</a></li>
                                        
                                          

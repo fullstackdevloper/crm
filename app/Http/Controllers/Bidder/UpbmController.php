@@ -128,7 +128,7 @@ class UpbmController extends MainBidderController
             $email=$manager->email;
 			
             \Mail::send('emails.lead_notification', $data, function ($message) use ($subject,$email){
-                $message->from('lalchand.glocify@gmail.com', 'Upbm');
+                $message->from('info@glocify.com', 'Glocify CRM');
 				$message->to($email)->subject($subject);
             });
 			}

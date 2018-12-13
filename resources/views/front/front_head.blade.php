@@ -17,7 +17,7 @@
      
 	  @yield("content")
 	  <footer>
-         <p class="copyr">©Management 2018 - All rights reserved</p>
+         <p style="text-align:center;" class="copyr">©Management 2018 - All rights reserved</p>
       </footer>
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -48,8 +48,9 @@
 									<td>{{ $i+1}}</td>
                                         <td>{{ username_by_id($upbms->created_by) }}</td>
                                         <td>{{ upworkname_by_id($upbms->upwork_id) }} </td>
-                                        <td>{{ $upbms->job_link }} </td>
+                                        
                                         <td>{{ $upbms->team }} </td>
+										<td>{{ $upbms->job_link }} </td>
                                         <td>{{ $upbms->job_type }} </td>
                                        
 										<td class="font-w600"> 

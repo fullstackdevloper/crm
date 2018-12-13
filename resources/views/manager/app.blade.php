@@ -3,7 +3,7 @@
 <!--[if gt IE 9]><!--> <html class="no-focus"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
-		
+		<meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{getcong('site_name')}} Manager</title>      
 		
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">

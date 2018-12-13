@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class LeadController extends MainAdminController
 {
-     
+    
     public function add_lead(Request $request)
     {
         if (!Auth::check() || Auth::user()->usertype != 'Admin') {
