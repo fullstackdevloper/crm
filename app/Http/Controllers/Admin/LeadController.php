@@ -95,7 +95,8 @@ class LeadController extends MainAdminController
         if (!Auth::check() || Auth::user()->usertype != 'Admin') {
             return redirect('admin');
         }
-        $allleads = Lead::orderBy('id', 'desc')->where('lead_status','Lead')->get();
+        $allleads = Lead::orderBy('id', 'desc')->where('status','Lead')->get();
+		
         return view('admin.pages.view_leads', compact('allleads'));
     }
 	
@@ -104,7 +105,7 @@ class LeadController extends MainAdminController
         if (!Auth::check() || Auth::user()->usertype != 'Admin') {
             return redirect('admin');
         }
-        $allleads = Lead::orderBy('id', 'desc')->where('lead_status','Customer')->get();
+        $allleads = Lead::orderBy('id', 'desc')->where('status','Customer')->get();
         return view('admin.pages.view_customers', compact('allleads'));
     }
     

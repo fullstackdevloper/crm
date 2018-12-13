@@ -99,7 +99,7 @@
 			<label class="control-label col-md-5">
 				 Job link  </label>
 			<div class="col-md-7">
-			   {{ $leads->job_link }} 
+			   <span style="word-break: break-all;">{{ $leads->job_link }} </span> 
 			</div>
 			</div>
 			</div>
