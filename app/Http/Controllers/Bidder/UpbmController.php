@@ -138,6 +138,98 @@ class UpbmController extends MainBidderController
         
         
     }
+	
+	public function filterallupbm(Request $request)
+    {
+        if (!Auth::check() || Auth::user()->usertype != 'Bidder') {
+            return redirect('bidder');
+        }
+		
+		 $data = \Input::except(array(
+            '_token'
+        ));
+		 $inputs = $request->all();
+        $upwork_id=$inputs['upworkid'];
+        $jobtype=$inputs['jobtype'];
+		$job_link= $inputs['job_link'];
+		$created_by= Auth::user()->id;
+		$datefromfilter= $inputs['datefrom'];
+		$datetofilter= $inputs['dateto'];
+        $inputs = $request->all();
+		 $datefrom=date($datefromfilter); 
+		$dateto=date($datetofilter);
+		if(empty($datefromfilter))
+		{
+		$datefrom = '2018-01-01';
+		}
+		if(empty($datetofilter))
+		{
+		 $dateto = date('Y-m-d');
+		}
+		if(empty($upwork_id) && empty($jobtype)&& empty($job_link) && empty($created_by))
+		{ 
+		$allUser = Upbm::orderBy('id', 'desc')->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();	
+		}
+		else if(!empty($upwork_id) && empty($jobtype) && empty($job_link) && empty($created_by))
+		{ 
+        $allUser = Upbm::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		} 
+		else if(empty($upwork_id) && !empty($jobtype) && empty($job_link) && empty($created_by))
+		{
+        $allUser = Upbm::orderBy('id', 'desc')->where('job_type', $jobtype)->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(empty($upwork_id) && empty($jobtype) && !empty($job_link) && empty($created_by))
+		{
+        $allUser = Upbm::orderBy('id', 'desc')->where('job_link','like','%'.$job_link.'%')->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(!empty($upwork_id) && !empty($jobtype) && empty($job_link) && empty($created_by))
+		{
+        $allUser = Upbm::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('job_type', $jobtype)->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		} 
+		else if(!empty($upwork_id) && !empty($jobtype) && !empty($job_link) && empty($created_by))
+		{
+        $allUser = Upbm::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('job_type', $jobtype)->where('job_link','like','%'.$job_link.'%')->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(!empty($upwork_id) && !empty($jobtype) && !empty($job_link) && !empty($created_by))
+		{
+        $allUser = Upbm::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('job_type', $jobtype)->where('created_by', $created_by)->where('job_link','like','%'.$job_link.'%')->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(empty($upwork_id) && !empty($jobtype) && empty($job_link) && !empty($created_by))
+		{
+        $allUser = Upbm::orderBy('id', 'desc')->where('job_type', $jobtype)->where('created_by', $created_by)->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(empty($upwork_id) && empty($jobtype) && empty($job_link) && !empty($created_by))
+		{
+        $allUser = Upbm::orderBy('id', 'desc')->where('created_by', $created_by)->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(!empty($upwork_id) && empty($jobtype) && empty($job_link) && !empty($created_by))
+		{
+        $allUser = Upbm::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('created_by', $created_by)->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(!empty($upwork_id) && !empty($jobtype) && empty($job_link) && !empty($created_by))
+		{
+        $allUser = Upbm::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('job_type', $jobtype)->where('created_by', $created_by)->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(!empty($upwork_id) && empty($jobtype) && !empty($job_link) && !empty($created_by))
+		{
+        $allUser = Upbm::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('created_by', $created_by)->where('job_link','like','%'.$job_link.'%')->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(empty($upwork_id) && !empty($jobtype) && !empty($job_link) && !empty($created_by))
+		{
+        $allUser = Upbm::orderBy('id', 'desc')->where('job_type', $jobtype)->where('created_by', $created_by)->where('job_link','like','%'.$job_link.'%')->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(empty($upwork_id) && empty($jobtype) && !empty($job_link) && !empty($created_by))
+		{
+        $allUser = Upbm::orderBy('id', 'desc')->where('created_by', $created_by)->where('job_link','like','%'.$job_link.'%')->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		} else{ 
+		$allUser = Upbm::orderBy('id', 'desc')->where('created_by',Auth::user()->id)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();	
+		}
+
+		
+		
+        return view('bidder.pages.view_upbms', compact('allUser','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter'));
+    }
+    
     
     
 }

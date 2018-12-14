@@ -25,6 +25,52 @@
                                     {{ Session::get('flash_message') }}
                                 </div>
                             @endif
+							<table class="table table-bordered table-striped">
+							{!! Form::open(array('url' => array('bidder/leads'),'class'=>'form-horizontal padding-15','name'=>'user_form','id'=>'user_form','role'=>'form','enctype' => 'multipart/form-data')) !!} 
+                                <tr>
+                                    <td>
+                                        <select class="form-control" name='upworkid'>
+                                             <option value="">--Select Upwork Id--</option>
+                                            @foreach(\App\Upwork::where('status',1)->get() as $upwork)
+                                              <option value="{{$upwork->id}}" <?php if(isset($upwork_id)){if($upwork_id==$upwork->id){ echo 'selected'; }}?>>{{$upwork->upwork_id}}</value>
+                                              @endforeach
+
+
+
+                                        </select>
+                                    </td>
+                                     
+                                    <td>
+                                        <select class="form-control" name='jobtype'>
+                                             <option value="">--Select Job Type--</option>
+                                            <option value="Fixed" <?php if(isset($jobtype)){if($jobtype=='Fixed'){ echo 'selected'; }}?>>Fixed</option>
+                                            <option value="Hourly" <?php if(isset($jobtype)){if($jobtype=='Hourly'){ echo 'selected'; }}?> >Hourly</option>
+
+                                        </select>
+                                    </td>
+									<td>
+
+
+                                        <input type='text' name='job_link' class="form-control" id='job_link' placeholder='Enter Upwork Job Link' value="{{ isset($job_link) ? $job_link : null }}">
+                                    </td>
+                                    </tr>
+									<tr>
+									<td>
+
+
+                                        From<input type='text' data-date-format="yyyy-mm-dd" name='datefrom' class="form-control" id='datefrom' placeholder='Date From' value="{{ isset($datefromfilter) ? $datefromfilter : null }}">
+                                    </td>
+									<td>
+                                       To <input type='text' name='dateto' data-date-format="yyyy-mm-dd" class="form-control" id='dateto' placeholder='Date to' value="{{ isset($datetofilter) ? $datetofilter : null }}">
+                                    </td>
+                                    <!--<td>
+                                        <input type='text' class="form-control" id='upbm' placeholder='Enter UPBM Date'>
+                                    </td>-->
+                                    <td><input type='submit' class="btn btn-primary" name="search_upbm" value="Search"></td>
+
+                                </tr>
+								  {!! Form::close() !!} 
+                            </table> 
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
                             <table class="table table-bordered table-striped users-dataTable-full">
                                 <thead>
@@ -291,5 +337,22 @@
                     
                 </div>
                 <!-- END Page Content -->
+				
+				
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+
+
+
+
+<script>
+
+$( function() {
+    $( "#datefrom" ).datepicker();
+  } );
+  $( function() {
+    $( "#dateto" ).datepicker();
+  } );
+</script>
 
 @endsection

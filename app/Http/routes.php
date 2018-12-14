@@ -42,7 +42,9 @@
 			Route::get('bidders/status/{id}/{status}', 'BidderController@status');
 
 			Route::get('leads', 'LeadController@alllead');
+			Route::post('leads', 'LeadController@filterallleads');
 			Route::get('customers', 'LeadController@allcustomers');
+			Route::post('customers', 'LeadController@filterallcustomers');
 			Route::get('leads/addnew', 'LeadController@add_lead');
 			Route::get('leads/addnew/{id}', 'LeadController@edit_lead');
 			Route::post('leads/addnew', 'LeadController@addnew');
@@ -52,6 +54,7 @@
 			Route::get('notes/delete/{id}', 'LeadController@deletenote');
 
 			Route::get('upbms', 'UpbmController@allupbm');
+			Route::post('upbms', 'UpbmController@filterallupbm');
 			Route::get('getajxadata', 'AjaxController@index');
 			Route::get('upbms/addnew', 'UpbmController@add_upbm');
 			Route::get('upbms/addnew/{id}', 'UpbmController@edit_upbm');
@@ -98,6 +101,7 @@
 			Route::get('leads', 'LeadController@alllead');
 			Route::post('leads', 'LeadController@filterallleads');
 			Route::get('customers', 'LeadController@allcustomers');
+			Route::post('customers', 'LeadController@filterallcustomers');
 			Route::get('leads/addnew', 'LeadController@add_lead');
 			Route::get('leads/addnew/{id}', 'LeadController@edit_lead');
 			Route::post('leads/addnew', 'LeadController@addnew');
@@ -127,6 +131,7 @@
 			Route::get('dashboard', 'DashboardController@index');
 
 			Route::get('leads', 'LeadController@alllead');
+			Route::post('leads', 'LeadController@filterallleads');
 			/* Route::get('leads/addnew', 'LeadController@add_lead');
 			Route::get('leads/addnew/{id}', 'LeadController@edit_lead');
 			Route::post('leads/addnew', 'LeadController@addnew');
@@ -134,6 +139,7 @@
 			Route::get('leads/status/{id}/{status}', 'LeadController@status'); */
 
 			Route::get('upbms', 'UpbmController@allupbm');
+			Route::post('upbms', 'UpbmController@filterallupbm');
 			Route::get('upbms/addnew', 'UpbmController@add_upbm');
 			Route::get('upbms/addnew/{id}', 'UpbmController@edit_upbm');
 			Route::post('upbms/addnew', 'UpbmController@addnew');

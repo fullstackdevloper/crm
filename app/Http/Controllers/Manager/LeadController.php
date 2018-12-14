@@ -68,8 +68,8 @@ class LeadController extends MainManagerController
         $lead->job_link  = $inputs['job_link'];
         $lead->job_type  = $inputs['job_type'];
 		$lead->team  = $inputs['team'];
-        $lead->status= 'Lead';        
-        $lead->lead_status= $inputs['lead_status'];        
+        //$lead->status= 'Lead';        
+        $lead->status= $inputs['lead_status'];        
         $lead->source= $inputs['source'];        
         $lead->assigned= $inputs['assigned'];        
         $lead->skype= $inputs['skype'];        
@@ -335,5 +335,96 @@ class LeadController extends MainManagerController
         return view('manager.pages.view_leads', compact('allleads','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter'));
     }
     
+	
+	public function filterallcustomers(Request $request)
+    {
+        if (!Auth::check() || Auth::user()->usertype != 'Manager') {
+            return redirect('manager');
+        }
+		
+		 $data = \Input::except(array(
+            '_token'
+        ));
+		 $inputs = $request->all();
+        $upwork_id=$inputs['upworkid'];
+        $jobtype=$inputs['jobtype'];
+		$job_link= $inputs['job_link'];
+		$created_by= $inputs['created_by'];
+		$datefromfilter= $inputs['datefrom'];
+		$datetofilter= $inputs['dateto'];
+        $inputs = $request->all();
+		echo $datefrom=date($datefromfilter);;
+		$dateto=date($datetofilter);
+		if(empty($datefromfilter))
+		{
+		$datefrom = '2018-01-01';
+		}
+		if(empty($datetofilter))
+		{
+		 $dateto = date('Y-m-d');
+		}
+		if(empty($upwork_id) && empty($jobtype)&& empty($job_link) && empty($created_by))
+		{ 
+		$allleads = Lead::orderBy('id', 'desc')->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();	
+		}
+		else if(!empty($upwork_id) && empty($jobtype) && empty($job_link) && empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		} 
+		else if(empty($upwork_id) && !empty($jobtype) && empty($job_link) && empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('job_type', $jobtype)->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(empty($upwork_id) && empty($jobtype) && !empty($job_link) && empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('job_link','like','%'.$job_link.'%')->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(!empty($upwork_id) && !empty($jobtype) && empty($job_link) && empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('job_type', $jobtype)->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		} 
+		else if(!empty($upwork_id) && !empty($jobtype) && !empty($job_link) && empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('job_type', $jobtype)->where('job_link','like','%'.$job_link.'%')->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(!empty($upwork_id) && !empty($jobtype) && !empty($job_link) && !empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('job_type', $jobtype)->where('created_by', $created_by)->where('job_link','like','%'.$job_link.'%')->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(empty($upwork_id) && empty($jobtype) && empty($job_link) && !empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('created_by', $created_by)->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(!empty($upwork_id) && empty($jobtype) && empty($job_link) && !empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('created_by', $created_by)->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(!empty($upwork_id) && !empty($jobtype) && empty($job_link) && !empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('job_type', $jobtype)->where('created_by', $created_by)->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(empty($upwork_id) && !empty($jobtype) && empty($job_link) && !empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('job_type', $jobtype)->where('created_by', $created_by)->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(!empty($upwork_id) && empty($jobtype) && !empty($job_link) && !empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('created_by', $created_by)->where('job_link','like','%'.$job_link.'%')->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(empty($upwork_id) && !empty($jobtype) && !empty($job_link) && !empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('job_type', $jobtype)->where('created_by', $created_by)->where('job_link','like','%'.$job_link.'%')->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(empty($upwork_id) && empty($jobtype) && !empty($job_link) && !empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('created_by', $created_by)->where('job_link','like','%'.$job_link.'%')->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		} else{
+		$allleads = Lead::orderBy('id', 'desc')->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();	
+		}
+
+		
+		
+        return view('manager.pages.view_customers', compact('allleads','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter'));
+    }
     
 }
