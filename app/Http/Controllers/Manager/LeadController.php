@@ -311,6 +311,10 @@ class LeadController extends MainManagerController
 		{
         $allleads = Lead::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('job_type', $jobtype)->where('created_by', $created_by)->where('team',Auth::user()->userrole)->where('status','Lead')->whereBetween('created_at', [$datefrom, $dateto])->get();
 		}
+		else if(empty($upwork_id) && !empty($jobtype) && empty($job_link) && !empty($created_by))
+		{
+        $allleads = Lead::orderBy('id', 'desc')->where('job_type', $jobtype)->where('created_by', $created_by)->where('team',Auth::user()->userrole)->where('status','Lead')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
 		else if(!empty($upwork_id) && empty($jobtype) && !empty($job_link) && !empty($created_by))
 		{
         $allleads = Lead::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('created_by', $created_by)->where('job_link','like','%'.$job_link.'%')->where('team',Auth::user()->userrole)->where('status','Lead')->whereBetween('created_at', [$datefrom, $dateto])->get();

@@ -128,7 +128,7 @@ class UpbmController extends MainManagerController
 		$datefromfilter= $inputs['datefrom'];
 		$datetofilter= $inputs['dateto'];
         $inputs = $request->all();
-		echo $datefrom=date($datefromfilter);;
+		 $datefrom=date($datefromfilter); 
 		$dateto=date($datetofilter);
 		if(empty($datefromfilter))
 		{
@@ -143,7 +143,7 @@ class UpbmController extends MainManagerController
 		$allUser = Upbm::orderBy('id', 'desc')->where('team',Auth::user()->userrole)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();	
 		}
 		else if(!empty($upwork_id) && empty($jobtype) && empty($job_link) && empty($created_by))
-		{
+		{ 
         $allUser = Upbm::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('team',Auth::user()->userrole)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
 		} 
 		else if(empty($upwork_id) && !empty($jobtype) && empty($job_link) && empty($created_by))
@@ -165,6 +165,10 @@ class UpbmController extends MainManagerController
 		else if(!empty($upwork_id) && !empty($jobtype) && !empty($job_link) && !empty($created_by))
 		{
         $allUser = Upbm::orderBy('id', 'desc')->where('upwork_id', $upwork_id)->where('job_type', $jobtype)->where('created_by', $created_by)->where('job_link','like','%'.$job_link.'%')->where('team',Auth::user()->userrole)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
+		}
+		else if(empty($upwork_id) && !empty($jobtype) && empty($job_link) && !empty($created_by))
+		{
+        $allUser = Upbm::orderBy('id', 'desc')->where('job_type', $jobtype)->where('created_by', $created_by)->where('team',Auth::user()->userrole)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
 		}
 		else if(empty($upwork_id) && empty($jobtype) && empty($job_link) && !empty($created_by))
 		{
@@ -189,7 +193,7 @@ class UpbmController extends MainManagerController
 		else if(empty($upwork_id) && empty($jobtype) && !empty($job_link) && !empty($created_by))
 		{
         $allUser = Upbm::orderBy('id', 'desc')->where('created_by', $created_by)->where('job_link','like','%'.$job_link.'%')->where('team',Auth::user()->userrole)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();
-		} else{
+		} else{ 
 		$allUser = Upbm::orderBy('id', 'desc')->where('team',Auth::user()->userrole)->where('status','Bid Placed')->whereBetween('created_at', [$datefrom, $dateto])->get();	
 		}
 
