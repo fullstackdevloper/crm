@@ -17175,5 +17175,21 @@ div.tagsinput span.tag a:hover {
 .assign_history tr:nth-child(2n+1) {
 	background: #f8f8f8;
 }
+h1.user-head {
+    float: left;
+    padding-right: 50px;
+}
+.dash-btn {
+    padding: 0px;
+    margin-top: 10px;
+}
+.block-header {
+    padding: 0;}
+	
+.dash-btn li {border-radius: 30px;}
+.top {
+    position: relative;
+    z-index: 9999999;
+}
 
      
