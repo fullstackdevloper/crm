@@ -26,6 +26,9 @@
 									 <li role="presentation" class="">
                                         <a href="#add_note" aria-controls="add_note" role="tab" data-toggle="tab">Add Note</a>
                                     </li>
+									<li role="presentation" class="">
+                                        <a href="#add_reminder" aria-controls="add_reminder" role="tab" data-toggle="tab">Add Reminder</a>
+                                    </li>
 								 @endif
 									 </ul>
                 <div class="block-content tab-content"> 
@@ -360,6 +363,59 @@
 				
 				
                 </div>
+				<div class="col-lg-12 tab-pane " id="add_reminder">
+				{!! Form::open(array('url' => array('manager/leads/addreminder'),'class'=>'form-horizontal padding-15','name'=>'for_note','id'=>'for_note','role'=>'form','enctype' => 'multipart/form-data')) !!}
+				
+									<div class="col-sm-12 col-lg-12" >
+										
+										
+								 <input type="hidden" name="lead_id" value="{{ isset($leads->id) ? $leads->id : null }}">
+
+										<div class="form-group">
+                                            <label for="" class="col-sm-1 control-label">Message</label>
+                                            <div class="col-sm-8">
+                                                
+                                                <textarea name="message" cols="30" rows="5"  class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        </div>
+										<div class="col-sm-12 col-lg-12" >
+										
+										<div class="form-group">
+                                            <label class="control-label col-md-1">
+                                                 Time</label>
+                                            <div class="col-md-8">
+                                                <input name="time" id="datetimepicker1" class="form-control " value="" type="text"  >
+                                            </div>
+                                        </div>
+                                        </div>
+										 <div class="col-xs-12 col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-5">
+                                            </label>
+                                            <div class="col-md-7">
+                                                <input  value="Add reminder" type="submit" class="btn btn-primary submitwait">
+                                            </div>
+                                        </div>
+                                    </div>
+									
+				{!! Form::close() !!} 
+				@if(isset($leads->id))
+				@foreach(\App\Reminder::where('lead_id',$leads->id)->orderBy('id','desc')->get() as $reminder)
+				<div class="col-sm-10 col-lg-10" >
+					<p>Message: {{$reminder->message}}</p>
+					<p>Time: {{$reminder->time}}</p>
+					<p>Author: {{username_by_id($reminder->created_by)}}</p>
+				<div class="btn-group">
+               <a href="{{ url('manager/reminders/delete/'.$reminder->id) }}" class=""  data-toggle="tooltip" title="Remove" onclick="return confirm('Are you sure? You will not be able to recover this.')">Remove</a>
+                 </div>
+                </div>
+				@endforeach
+				@endif
+				
+				
+                </div>
+				
                 </div>
 				
 				
@@ -367,10 +423,19 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
+<script>
+$(function() {
+  $('#datetimepicker1').datetimepicker();
+});
+</script>
 <!-- END Page Content -->     
-     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 @endsection

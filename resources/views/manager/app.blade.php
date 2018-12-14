@@ -132,6 +132,8 @@
         <script src="{{ URL::asset('manager_assets/js/plugins/dropzonejs/dropzone.min.js') }}"></script>
         <script src="{{ URL::asset('manager_assets/js/plugins/jquery-tags-input/jquery.tagsinput.min.js') }}"></script>
 		<script src="{{ URL::asset('manager_assets/js/plugins/summernote/summernote.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
 		
    
 	</body>

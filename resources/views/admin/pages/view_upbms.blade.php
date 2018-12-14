@@ -28,7 +28,6 @@
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
                             <table class="table table-bordered table-striped">
                                 <tr>
-                                <form>
                                     <td>
                                         <select class="form-control" name='upworkid'>
                                              <option value="">--Select Upwork Id--</option>
@@ -40,11 +39,7 @@
 
                                         </select>
                                     </td>
-                                     <td>
-
-
-                                        <input type='text' name='job_link' class="form-control" id='job_link' placeholder='Enter Upwork Job Link'>
-                                    </td>
+                                     
                                     <td>
                                         <select class="form-control" name='jobtype'>
                                              <option value="">--Select Job Type--</option>
@@ -58,16 +53,20 @@
                                              <option value="">--Select Team--</option>
                                             <option value="Android">Android</option>
                                             <option value="Content Writing">Content Writing</option>
-                                            <option value="Marketing"></option>
-                                            <option value="PHP"></option>
+                                            <option value="Marketing">Marketing</option>
+                                            <option value="PHP">PHP</option>
 
                                         </select>
+                                    </td>
+									<td>
+
+
+                                        <input type='text' name='job_link' class="form-control" id='job_link' placeholder='Enter Upwork Job Link'>
                                     </td>
                                     <!--<td>
                                         <input type='text' class="form-control" id='upbm' placeholder='Enter UPBM Date'>
                                     </td>-->
                                     <td><input type='submit' class="form-control" name="search_upbm" value="Search"></td>
-                                </form>
 
                                 </tr>
                             </table>
