@@ -105,7 +105,7 @@ class LeadController extends MainManagerController
         if (!Auth::check() || Auth::user()->usertype != 'Manager') {
             return redirect('manager');
         }
-        $allleads = Lead::orderBy('id', 'desc')->where('lead_status','Customer')->get();
+        $allleads = Lead::orderBy('id', 'desc')->where('status','Customer')->get();
         return view('manager.pages.view_customers', compact('allleads'));
     }
     
