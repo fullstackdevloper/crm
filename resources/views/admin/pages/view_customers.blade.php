@@ -131,5 +131,16 @@
                     
                 </div>
                 <!-- END Page Content -->
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script>
+
+$( function() {
+    $( "#datefrom" ).datepicker();
+  } );
+  $( function() {
+    $( "#dateto" ).datepicker();
+  } );
+</script>
 
 @endsection
