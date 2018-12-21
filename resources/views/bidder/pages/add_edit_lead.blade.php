@@ -6,15 +6,7 @@
     
 <!-- Page Content -->
 <div class="content content-boxed">
-       <h1 class="user-head">
-                         {{ isset($upbms->id) ? 'Edit UPBM' : 'Add UPBM' }}
-                            </h1>
-                        <ul class="dash-btn">
-                           
-                            <li class="active"><a  href="{{ URL::to('bidder/upbms/addnew') }}" >Add New</a></li>
-                          
-                            <li ><a class="{{classActivePath('adduser')}}" href="{{ URL::to('bidder/upbms') }}" >All upbms</a></li>
-                            </ul>
+      
     <div class="row" >
         <div class="col-sm-12 col-lg-12" >
             <div class="block">

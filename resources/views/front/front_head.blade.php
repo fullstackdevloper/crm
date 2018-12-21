@@ -5,7 +5,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <title> Management</title>
+      <title> CRM Glocify Technology</title>
       <!-- Bootstrap -->
       <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
       <link href="{{ URL::asset('front/css/custom.css') }}" rel="stylesheet">
@@ -20,7 +20,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<span class="management"> ©Management 2018 - All rights reserved</span>
+					<span class="management"> ©2018 Glocify Technologies - All rights reserved</span>
 				</div>
 			</div>
 		</div>

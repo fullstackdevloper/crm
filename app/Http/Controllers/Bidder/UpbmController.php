@@ -14,18 +14,19 @@ class UpbmController extends MainBidderController
     
     public function add_upbm(Request $request)
     {
+		$heading_title='Add New Upbm';
         if (!Auth::check() || Auth::user()->usertype != 'Bidder') {
             return redirect('bidder');
         }
-        return view('bidder.pages.add_edit_upbm');
+        return view('bidder.pages.add_edit_upbm',compact('heading_title'));
     }
     
     public function edit_upbm(Request $request)
     {
-        
+        $heading_title='Edit Upbm';
         $upbms = Upbm::findOrFail($request->id);
         
-        return view('bidder.pages.add_edit_upbm', compact('upbms'));
+        return view('bidder.pages.add_edit_upbm', compact('upbms','heading_title'));
     }
     public function addnew(Request $request)
     {
@@ -62,8 +63,9 @@ class UpbmController extends MainBidderController
         $Upbm->upwork_id  = $inputs['upwork_id'];
         $Upbm->job_link  = $inputs['job_link'];
         $Upbm->job_type  = $inputs['job_type'];
-		$Upbm->team  = $inputs['team'];
-        $Upbm->status= $inputs['status'];        
+	$Upbm->team  = $inputs['team'];
+        $Upbm->status= $inputs['status']; 
+        $Upbm->clientrating= $inputs['clientrating'];   
         $Upbm->save();
         
         
@@ -73,11 +75,12 @@ class UpbmController extends MainBidderController
     }
     public function allupbm(Request $request)
     {
+		$heading_title='All Upbm';
         if (!Auth::check() || Auth::user()->usertype != 'Bidder') {
             return redirect('bidder');
         }
         $allUser = Upbm::where('created_by',Auth::user()->id)->where('status','Bid Placed')->orderBy('id', 'desc')->get();
-        return view('bidder.pages.view_upbms', compact('allUser'));
+        return view('bidder.pages.view_upbms', compact('allUser','heading_title'));
     }
     
     public function deleteupbm(Request $request)
@@ -165,6 +168,7 @@ class UpbmController extends MainBidderController
 		if(empty($datetofilter))
 		{
 		 $dateto = date('Y-m-d');
+         $dateto = date('Y-m-d',strtotime($dateto . "+1 days"));
 		}
 		if(empty($upwork_id) && empty($jobtype)&& empty($job_link) && empty($created_by))
 		{ 
@@ -226,8 +230,8 @@ class UpbmController extends MainBidderController
 		}
 
 		
-		
-        return view('bidder.pages.view_upbms', compact('allUser','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter'));
+		$heading_title='All Upbm';
+        return view('bidder.pages.view_upbms', compact('allUser','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter','heading_title'));
     }
     
     

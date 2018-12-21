@@ -49,19 +49,11 @@
                     <!-- Login Block -->
                     <div class="block block-themed animated fadeIn">
                         <div class="block-header bg-primary">
-                            <ul class="block-options">
-                                <li>
-                                    <a href="{{ URL::to('password/email') }}">Forgot Password?</a>
-                                </li>
-                                 
-                            </ul>
+                            
                             <h3 class="block-title"> Bidder Login</h3>
                         </div>
                         <div class="block-content block-content-full block-content-narrow">
-                            <!-- Login Title -->
-                            <h1 class="h2 font-w600 push-30-t push-5">{{getcong('site_name')}}</h1>
-                            <p>Welcome, please login.</p>
-                            <!-- END Login Title -->
+                          
                             <div class="message">
                                                 <!--{!! Html::ul($errors->all(), array('class'=>'alert alert-danger errors')) !!}-->
                                                     @if (count($errors) > 0)
@@ -77,9 +69,7 @@
                                             @endif
                                                     
                                                 </div>
-                            <!-- Login Form -->
-                            <!-- jQuery Validation (.js-validation-login class is initialized in js/pages/base_pages_login.js) -->
-                            <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
+                          
                           
                                 {!! Form::open(array('url' => 'bidder/login','class'=>'js-validation-login form-horizontal push-30-t push-50','id'=>'loginform','role'=>'form')) !!}
                                 <div class="form-group">
@@ -94,7 +84,7 @@
                                 <div class="form-group">
                                      
                                         <label class="css-input switch switch-sm switch-primary">
-                                            <input type="checkbox" id="login-remember-me" name="remember"><span></span> Remember Me?
+                                            <a href="{{ URL::to('password/email') }}">Forgot Password?</a>
                                         </label>
                                      
                                 </div>

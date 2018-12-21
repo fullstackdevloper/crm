@@ -5,31 +5,13 @@
         <meta charset="utf-8">
 		
         <title>{{getcong('site_name')}} Admin</title>   
-<meta name="csrf-token" content="{{ csrf_token() }}">		
+		<meta name="csrf-token" content="{{ csrf_token() }}">		
 		
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
 		
         <!-- Icons -->
         <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-        <link rel="shortcut icon" href="{{ URL::asset('upload/'.getcong('site_favicon')) }}">
-		
-		
-        <link rel="icon" type="image/png" href="{{ URL::asset('admin_assets/img/favicons/favicon-16x16.png') }}" sizes="16x16">
-        <link rel="icon" type="image/png" href="{{ URL::asset('admin_assets/img/favicons/favicon-32x32.png') }}" sizes="32x32">
-        <link rel="icon" type="image/png" href="{{ URL::asset('admin_assets/img/favicons/favicon-96x96.png') }}" sizes="96x96">
-        <link rel="icon" type="image/png" href="{{ URL::asset('admin_assets/img/favicons/favicon-160x160.png') }}" sizes="160x160">
-        <link rel="icon" type="image/png" href="{{ URL::asset('admin_assets/img/favicons/favicon-192x192.png') }}" sizes="192x192">
-		
-        <link rel="apple-touch-icon" sizes="57x57" href="{{ URL::asset('admin_assets/img/favicons/apple-touch-icon-57x57.png') }}">
-        <link rel="apple-touch-icon" sizes="60x60" href="{{ URL::asset('admin_assets/img/favicons/apple-touch-icon-60x60.png') }}">
-        <link rel="apple-touch-icon" sizes="72x72" href="{{ URL::asset('admin_assets/img/favicons/apple-touch-icon-72x72.png') }}">
-        <link rel="apple-touch-icon" sizes="76x76" href="{{ URL::asset('admin_assets/img/favicons/apple-touch-icon-76x76.png') }}">
-        <link rel="apple-touch-icon" sizes="114x114" href="{{ URL::asset('admin_assets/img/favicons/apple-touch-icon-114x114.png') }}">
-        <link rel="apple-touch-icon" sizes="120x120" href="{{ URL::asset('admin_assets/img/favicons/apple-touch-icon-120x120.png') }}">
-        <link rel="apple-touch-icon" sizes="144x144" href="{{ URL::asset('admin_assets/img/favicons/apple-touch-icon-144x144.png') }}">
-        <link rel="apple-touch-icon" sizes="152x152" href="{{ URL::asset('admin_assets/img/favicons/apple-touch-icon-152x152.png') }}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ URL::asset('admin_assets/img/favicons/apple-touch-icon-180x180.png') }}">
-        <!-- END Icons -->
+        <link rel="shortcut icon" href="{{ URL::asset('upload/'.getcong('site_favicon')) }}">	
 		
         <!-- Stylesheets -->
         <!-- Web fonts -->
@@ -53,7 +35,7 @@
 		
         <!-- OneUI CSS framework -->
         <link rel="stylesheet" id="css-main" href="{{ URL::asset('admin_assets/css/oneui.css') }}">
-		
+		<link rel="stylesheet" id="css-ulternate" href="{{ URL::asset('front/css/style.css') }}">
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
         <!-- END Stylesheets -->
@@ -84,56 +66,12 @@
 					
 				</div>
                 <div class="pull-left">
-                    <a class="font-w600" href="javascript:void(0)" target="_blank">{{getcong('site_name')}}</a> &copy; <span class="js-year-copy"></span>. All rights are reserved
+                  &copy; <span class="">2018 Glocify Technologies - All rights reserved</span>. 
 				</div>
 			</footer>
             <!-- END Footer -->
 		</div>
-        <!-- END Page Container -->
-		
-        <!-- Apps Modal -->
-        <!-- Opens from the button in the header -->
-        <div class="modal fade" id="apps-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-sm modal-dialog modal-dialog-top">
-                <div class="modal-content">
-                    <!-- Apps Block -->
-                    <div class="block block-themed block-transparent">
-                        <div class="block-header bg-primary-dark">
-                            <ul class="block-options">
-                                <li>
-                                    <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
-								</li>
-							</ul>
-                            <h3 class="block-title">Apps</h3>
-						</div>
-                        <div class="block-content">
-                            <div class="row text-center">
-                                <div class="col-xs-6">
-                                    <a class="block block-rounded" href="{{ URL::to('admin/dashboard') }}">
-                                        <div class="block-content text-white bg-default">
-                                            <i class="si si-speedometer fa-2x"></i>
-                                            <div class="font-w600 push-15-t push-15">Backend</div>
-										</div>
-									</a>
-								</div>
-                                <div class="col-xs-6">
-                                    <a class="block block-rounded" href="{{ URL::to('/') }}" target="_blank">
-                                        <div class="block-content text-white bg-modern">
-                                            <i class="si si-rocket fa-2x"></i>
-                                            <div class="font-w600 push-15-t push-15">Frontend</div>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-                    <!-- END Apps Block -->
-				</div>
-			</div>			{{ csrf_field() }}
-		</div>
-        <!-- END Apps Modal -->
-		
-        <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
+        
         <script src="{{ URL::asset('admin_assets/js/core/jquery.min.js') }}"></script>
         <script src="{{ URL::asset('admin_assets/js/core/bootstrap.min.js') }}"></script>
         <script src="{{ URL::asset('admin_assets/js/core/jquery.slimscroll.min.js') }}"></script>
@@ -167,69 +105,6 @@
         <script src="{{ URL::asset('admin_assets/js/plugins/jquery-tags-input/jquery.tagsinput.min.js') }}"></script>
 		<script src="{{ URL::asset('admin_assets/js/plugins/summernote/summernote.min.js') }}"></script>
 		
-        <script>
-            $(function () {
-                // Init page helpers (BS Datepicker + BS Colorpicker + Select2 + Masked Input + Tags Inputs plugins)
-                App.initHelpers(['summernote','datepicker', 'select2', 'masked-inputs', 'tags-inputs']);
-			});
-		</script>
-		
-        <script>			var _token = $('input[name="_token"]').val();
-            $(function () {
-                // Init page helpers (Slick Slider plugin)
-                App.initHelpers('slick');
-			});
-            function copyToClipboard(element) {
-                var $temp = $("<input>");
-                $("body").append($temp);
-                $temp.val($(element).text()).select();
-                document.execCommand("copy");
-                $temp.remove();
-			}			 			
-			function getAssignLeadCom(leadID){				
-				$.ajax({					
-						url: "{{ url('/admin/GetCompamyForLeadAssign') }}",					
-						type:'POST',					
-						data: { _token : _token,						
-						leadID: leadID					
-					},											
-				success: function (resp) {						
-						$('#loadingImage').hide();						
-						$('#str_rat_html').html(resp);	
-						$('#loadingImage').show();	
-					}				
-				});
-			}
-			
-			function saveAssignedLead(){
-					var leadID = $('#lead_id').val();
-					var chkArray = [];
-					$(".company_check_list:checked").each(function() {
-						chkArray.push($(this).val());
-					});
-				
-				$.ajax({					
-						url: "{{ url('/admin/SaveAssignedLead') }}",					
-						type:'POST',					
-						data: { _token : _token,						
-						leadID: leadID,
-						chkedArr: JSON.stringify(chkArray),
-					},											
-				success: function (resp) {
-						location.reload(true);
-						console.log(resp);
-						//$('#loadingImage').hide();						
-						//$('#str_rat_html').html(resp);	
-						//$('#loadingImage').show();	
-					}				
-				});
-			}
-			
-			$(function () {
-				$('#example').DataTable({
-					"pageLength": 5
-				});				
-			});
-		</script>
+      
 	</body>
 </html>

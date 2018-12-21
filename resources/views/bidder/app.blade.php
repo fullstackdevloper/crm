@@ -8,27 +8,7 @@
         <title>{{getcong('site_name')}} Bidder</title>      
 		
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
-		
-        <!-- Icons -->
-        <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
         <link rel="shortcut icon" href="{{ URL::asset('upload/'.getcong('site_favicon')) }}">
-		
-		
-        <link rel="icon" type="image/png" href="{{ URL::asset('bidder_assets/img/favicons/favicon-16x16.png') }}" sizes="16x16">
-        <link rel="icon" type="image/png" href="{{ URL::asset('bidder_assets/img/favicons/favicon-32x32.png') }}" sizes="32x32">
-        <link rel="icon" type="image/png" href="{{ URL::asset('bidder_assets/img/favicons/favicon-96x96.png') }}" sizes="96x96">
-        <link rel="icon" type="image/png" href="{{ URL::asset('bidder_assets/img/favicons/favicon-160x160.png') }}" sizes="160x160">
-        <link rel="icon" type="image/png" href="{{ URL::asset('bidder_assets/img/favicons/favicon-192x192.png') }}" sizes="192x192">
-		
-        <link rel="apple-touch-icon" sizes="57x57" href="{{ URL::asset('bidder_assets/img/favicons/apple-touch-icon-57x57.png') }}">
-        <link rel="apple-touch-icon" sizes="60x60" href="{{ URL::asset('bidder_assets/img/favicons/apple-touch-icon-60x60.png') }}">
-        <link rel="apple-touch-icon" sizes="72x72" href="{{ URL::asset('bidder_assets/img/favicons/apple-touch-icon-72x72.png') }}">
-        <link rel="apple-touch-icon" sizes="76x76" href="{{ URL::asset('bidder_assets/img/favicons/apple-touch-icon-76x76.png') }}">
-        <link rel="apple-touch-icon" sizes="114x114" href="{{ URL::asset('bidder_assets/img/favicons/apple-touch-icon-114x114.png') }}">
-        <link rel="apple-touch-icon" sizes="120x120" href="{{ URL::asset('bidder_assets/img/favicons/apple-touch-icon-120x120.png') }}">
-        <link rel="apple-touch-icon" sizes="144x144" href="{{ URL::asset('bidder_assets/img/favicons/apple-touch-icon-144x144.png') }}">
-        <link rel="apple-touch-icon" sizes="152x152" href="{{ URL::asset('bidder_assets/img/favicons/apple-touch-icon-152x152.png') }}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ URL::asset('bidder_assets/img/favicons/apple-touch-icon-180x180.png') }}">
         <!-- END Icons -->
 		
         <!-- Stylesheets -->
@@ -53,6 +33,7 @@
 		
         <!-- OneUI CSS framework -->
         <link rel="stylesheet" id="css-main" href="{{ URL::asset('bidder_assets/css/oneui.css') }}">
+        <link rel="stylesheet" id="css-ulternate" href="{{ URL::asset('front/css/style.css') }}">
 		
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
@@ -84,21 +65,14 @@
 					
 				</div>
                 <div class="pull-left">
-                    <a class="font-w600" href="javascript:void(0)" target="_blank">{{getcong('site_name')}}</a> &copy; <span class="js-year-copy"></span>. All rights are reserved
+                     &copy; <span class="">2018 Glocify Technologies - All rights reserved</span>.
 				</div>
 			</footer>
             <!-- END Footer -->
 		</div>
         <!-- END Page Container -->
 		
-        <!-- Apps Modal -->
-        <!-- Opens from the button in the header -->
-        <div class="modal fade" id="apps-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-sm modal-dialog modal-dialog-top">
-                
-			</div>			{{ csrf_field() }}
-		</div>
-        <!-- END Apps Modal -->
+        
 		
         <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
         <script src="{{ URL::asset('bidder_assets/js/core/jquery.min.js') }}"></script>

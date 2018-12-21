@@ -72,11 +72,12 @@ class LeadController extends MainBidderController
     }
     public function alllead(Request $request)
     {
+		$heading_title='All Leads';
         if (!Auth::check() || Auth::user()->usertype != 'Bidder') {
             return redirect('bidder');
         }
         $allUser = Lead::where('created_by',Auth::user()->id)->where('status','Lead')->orderBy('id', 'desc')->get();
-        return view('bidder.pages.view_leads', compact('allUser'));
+        return view('bidder.pages.view_leads', compact('allUser','heading_title'));
     }
     
     public function deletelead(Request $request)
@@ -135,7 +136,8 @@ class LeadController extends MainBidderController
 		}
 		if(empty($datetofilter))
 		{
-		 $dateto = date('Y-m-d');
+		  $dateto = date('Y-m-d');
+          $dateto = date('Y-m-d',strtotime($dateto . "+1 days"));
 		}
 		if(empty($upwork_id) && empty($jobtype)&& empty($job_link) && empty($created_by))
 		{ 
@@ -197,8 +199,8 @@ class LeadController extends MainBidderController
 		}
 
 		
-		
-        return view('bidder.pages.view_leads', compact('allUser','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter'));
+		$heading_title='All Leads';
+        return view('bidder.pages.view_leads', compact('allUser','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter','heading_title'));
     }
     
     

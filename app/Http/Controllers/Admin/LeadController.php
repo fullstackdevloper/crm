@@ -15,18 +15,19 @@ class LeadController extends MainAdminController
     
     public function add_lead(Request $request)
     {
+		$heading_title='Add New Lead';
         if (!Auth::check() || Auth::user()->usertype != 'Admin') {
             return redirect('admin');
         }
-        return view('admin.pages.add_edit_lead');
+        return view('admin.pages.add_edit_lead',compact('heading_title'));
     }
     
     public function edit_lead(Request $request)
     {
-        
+        $heading_title='Edit Lead';
         $leads = Lead::findOrFail($request->id);
         
-        return view('admin.pages.add_edit_lead', compact('leads'));
+        return view('admin.pages.add_edit_lead', compact('leads','heading_title'));
     }
     public function addnew(Request $request)
     {
@@ -68,7 +69,8 @@ class LeadController extends MainAdminController
         $lead->team  = $inputs['team'];
 		
         //$lead->status= 'Lead';        
-        $lead->status= $inputs['lead_status'];        
+        $lead->status= $inputs['lead_status'];    
+        $lead->clientrating= $inputs['clientrating']; 
         $lead->source= $inputs['source'];        
         $lead->assigned= $inputs['assigned'];        
         $lead->skype= $inputs['skype'];        
@@ -92,21 +94,23 @@ class LeadController extends MainAdminController
     }
     public function alllead(Request $request)
     {
+		$heading_title='All Leads';
         if (!Auth::check() || Auth::user()->usertype != 'Admin') {
             return redirect('admin');
         }
         $allleads = Lead::orderBy('id', 'desc')->where('status','Lead')->get();
 		
-        return view('admin.pages.view_leads', compact('allleads'));
+        return view('admin.pages.view_leads', compact('allleads','heading_title'));
     }
 	
 	 public function allcustomers(Request $request)
     {
+		$heading_title='All Customers';
         if (!Auth::check() || Auth::user()->usertype != 'Admin') {
             return redirect('admin');
         }
         $allleads = Lead::orderBy('id', 'desc')->where('status','Customer')->get();
-        return view('admin.pages.view_customers', compact('allleads'));
+        return view('admin.pages.view_customers', compact('allleads','heading_title'));
     }
     
     public function deletelead(Request $request)
@@ -216,7 +220,8 @@ class LeadController extends MainAdminController
 		}
 		if(empty($datetofilter))
 		{
-		 $dateto = date('Y-m-d');
+		  $dateto = date('Y-m-d');
+          $dateto = date('Y-m-d',strtotime($dateto . "+1 days"));
 		}
 		if(empty($upwork_id) && empty($jobtype)&& empty($job_link) && empty($created_by))
 		{ 
@@ -278,8 +283,8 @@ class LeadController extends MainAdminController
 		}
 
 		
-		
-        return view('admin.pages.view_leads', compact('allleads','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter'));
+		$heading_title='All Customers';
+        return view('admin.pages.view_leads', compact('allleads','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter','heading_title'));
     }
 	
 	public function filterallcustomers(Request $request)
@@ -307,7 +312,8 @@ class LeadController extends MainAdminController
 		}
 		if(empty($datetofilter))
 		{
-		 $dateto = date('Y-m-d');
+		  $dateto = date('Y-m-d');
+          $dateto = date('Y-m-d',strtotime($dateto . "+1 days"));
 		}
 		if(empty($upwork_id) && empty($jobtype)&& empty($job_link) && empty($created_by))
 		{ 
@@ -369,8 +375,8 @@ class LeadController extends MainAdminController
 		}
 
 		
-		
-        return view('admin.pages.view_customers', compact('allleads','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter'));
+		$heading_title='All Customers';
+        return view('admin.pages.view_customers', compact('allleads','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter','heading_title'));
     }
     
 }

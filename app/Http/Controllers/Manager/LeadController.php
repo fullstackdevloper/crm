@@ -16,18 +16,19 @@ class LeadController extends MainManagerController
     
     public function add_lead(Request $request)
     {
+		$heading_title='Add New Lead';
         if (!Auth::check() || Auth::user()->usertype != 'Manager') {
             return redirect('manager');
         }
-        return view('manager.pages.add_edit_lead');
+        return view('manager.pages.add_edit_lead',compact('heading_title'));
     }
     
     public function edit_lead(Request $request)
     {
-        
+        $heading_title='Edit Lead';
         $leads = Lead::findOrFail($request->id);
         
-        return view('manager.pages.add_edit_lead', compact('leads'));
+        return view('manager.pages.add_edit_lead', compact('leads','heading_title'));
     }
     public function addnew(Request $request)
     {
@@ -69,7 +70,8 @@ class LeadController extends MainManagerController
         $lead->job_type  = $inputs['job_type'];
 		$lead->team  = $inputs['team'];
         //$lead->status= 'Lead';        
-        $lead->status= $inputs['lead_status'];        
+        $lead->status= $inputs['lead_status'];  
+        $lead->clientrating= $inputs['clientrating']; 
         $lead->source= $inputs['source'];        
         $lead->assigned= $inputs['assigned'];        
         $lead->skype= $inputs['skype'];        
@@ -93,20 +95,22 @@ class LeadController extends MainManagerController
     }
     public function alllead(Request $request)
     {
+		$heading_title='All Leads';
         if (!Auth::check() || Auth::user()->usertype != 'Manager') {
             return redirect('manager');
         }
         $allleads = Lead::orderBy('id', 'desc')->where('team',Auth::user()->userrole)->where('status','Lead')->get();
-        return view('manager.pages.view_leads', compact('allleads'));
+        return view('manager.pages.view_leads', compact('allleads','heading_title'));
     }
 	
 	public function allcustomers(Request $request)
     {
+		$heading_title='All Customers';
         if (!Auth::check() || Auth::user()->usertype != 'Manager') {
             return redirect('manager');
         }
         $allleads = Lead::orderBy('id', 'desc')->where('status','Customer')->get();
-        return view('manager.pages.view_customers', compact('allleads'));
+        return view('manager.pages.view_customers', compact('allleads','heading_title'));
     }
     
     public function deletelead(Request $request)
@@ -270,6 +274,7 @@ class LeadController extends MainManagerController
 		if(empty($datetofilter))
 		{
 		 $dateto = date('Y-m-d');
+                 $dateto = date('Y-m-d',strtotime($dateto . "+1 days"));
 		}
 		if(empty($upwork_id) && empty($jobtype)&& empty($job_link) && empty($created_by))
 		{ 
@@ -330,9 +335,9 @@ class LeadController extends MainManagerController
 		$allleads = Lead::orderBy('id', 'desc')->where('team',Auth::user()->userrole)->where('status','Lead')->whereBetween('created_at', [$datefrom, $dateto])->get();	
 		}
 
+		$heading_title='All Leads';
 		
-		
-        return view('manager.pages.view_leads', compact('allleads','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter'));
+        return view('manager.pages.view_leads', compact('allleads','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter','heading_title'));
     }
     
 	
@@ -362,6 +367,7 @@ class LeadController extends MainManagerController
 		if(empty($datetofilter))
 		{
 		 $dateto = date('Y-m-d');
+                 $dateto = date('Y-m-d',strtotime($dateto . "+1 days"));
 		}
 		if(empty($upwork_id) && empty($jobtype)&& empty($job_link) && empty($created_by))
 		{ 
@@ -422,9 +428,9 @@ class LeadController extends MainManagerController
 		$allleads = Lead::orderBy('id', 'desc')->where('team',Auth::user()->userrole)->where('status','Customer')->whereBetween('created_at', [$datefrom, $dateto])->get();	
 		}
 
+		$heading_title='All Customers';
 		
-		
-        return view('manager.pages.view_customers', compact('allleads','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter'));
+        return view('manager.pages.view_customers', compact('allleads','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter','heading_title'));
     }
     
 }

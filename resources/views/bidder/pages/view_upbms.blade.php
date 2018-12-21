@@ -5,15 +5,7 @@
 		 
 				 <!-- Page Content -->
                 <div class="content">
-                       <h1 class="user-head">
-                               Upbms
-                            </h1>
-                      <ul class="dash-btn">
-                           
-                            <li><a class="{{classActivePath('adduser')}}" href="{{ URL::to('bidder/upbms/addnew') }}" >Add New </a></li>
-                          
-                            <li class="active"><a  href="{{ URL::to('bidder/upbms') }}" >All upbms</a></li>
-                            </ul>
+                  
                     <!-- Dynamic Table Full -->
                     <div class="block">
                         <div class="block-header">                            
@@ -58,15 +50,15 @@
 									<td>
 
 
-                                        From<input type='text' data-date-format="yyyy-mm-dd" name='datefrom' class="form-control" id='datefrom' placeholder='Date From' value="{{ isset($datefromfilter) ? $datefromfilter : null }}">
+                                        <input type='text' data-date-format="yyyy-mm-dd" name='datefrom' class="form-control" id='datefrom' placeholder='Date From' value="{{ isset($datefromfilter) ? $datefromfilter : null }}">
                                     </td>
 									<td>
-                                       To <input type='text' name='dateto' data-date-format="yyyy-mm-dd" class="form-control" id='dateto' placeholder='Date to' value="{{ isset($datetofilter) ? $datetofilter : null }}">
+                                        <input type='text' name='dateto' data-date-format="yyyy-mm-dd" class="form-control" id='dateto' placeholder='Date to' value="{{ isset($datetofilter) ? $datetofilter : null }}">
                                     </td>
                                     <!--<td>
                                         <input type='text' class="form-control" id='upbm' placeholder='Enter UPBM Date'>
                                     </td>-->
-                                    <td><input type='submit' class="btn btn-primary" name="search_upbm" value="Search"></td>
+                                    <td><input type='submit' class="btn btn-primary" name="search_upbm" value="Search"> &nbsp &nbsp <input type='button' onclick="clear_filters();" class="btn btn-primary" name="clear_filter" value="Clear All"></td>
 
                                 </tr>
 								  {!! Form::close() !!} 
@@ -82,6 +74,7 @@
                                         <th>Upwork Job Link </th>
                                         <th>Job Type </th>
                                         <th>Status </th>
+                                        <th>Clients Rating </th>
                                         <th>UPBM Date </th>
 						           
                                         
@@ -106,6 +99,7 @@
                                             <a href="{{URL::to('bidder/upbms/status/'.$upbms->id.'/Bid Placed')}}" data-toggle="tooltip" title="Bid Placed" class="text-success">Lead</a>
                                             @endif
                                         </td> 
+                                        <td>{{ $upbms->clientrating }} </td>
                                          <td>{{ $upbms->created_at }} </td>
                                                                
                                         <td class="text-center">
@@ -145,5 +139,10 @@ $( function() {
     $( "#dateto" ).datepicker();
   } );
 </script>
-
+<script>
+function clear_filters()
+{
+$('.form-control').val('');
+}
+</script>
 @endsection

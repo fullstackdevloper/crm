@@ -5,15 +5,7 @@
 		 
 				 <!-- Page Content -->
                 <div class="content">
-                       <h1 class="user-head">
-                               Customers
-                            </h1>
-                      <ul class="dash-btn">
-                           
-                        
-                          
-                            <li class="active"><a  href="{{ URL::to('admin/customers') }}" >All Customers</a></li>
-                            </ul>
+                      
                     <!-- Dynamic Table Full -->
                     <div class="block">
                         <div class="block-header">                            
@@ -59,24 +51,35 @@
                                         </select>
                                     </td>
 									<td>
+                                        <select class="form-control" name='clientrating'>
+                                             <option value="">--Select Client Rating--</option>
+                                            <option value="New" <?php if(isset($clientrating)){if($clientrating=='New'){ echo 'selected'; }}?>>New Client</option>
+                                            <option value="Good" <?php if(isset($clientrating)){if($clientrating=='Good'){ echo 'selected'; }}?> >Good Client</option>
+											<option value="Average" <?php if(isset($clientrating)){if($clientrating=='Average'){ echo 'selected'; }}?> >Average Client</option>
+											<option value="Excellent" <?php if(isset($clientrating)){if($clientrating=='Excellent'){ echo 'selected'; }}?> >Excellent client </option>
 
-
-                                        <input type='text' name='job_link' class="form-control" id='job_link' placeholder='Enter Upwork Job Link' value="{{ isset($job_link) ? $job_link : null }}">
+                                        </select>
                                     </td>
+									
                                     </tr>
 									<tr>
 									<td>
 
 
-                                        From<input type='text' data-date-format="yyyy-mm-dd" name='datefrom' class="form-control" id='datefrom' placeholder='Date From' value="{{ isset($datefromfilter) ? $datefromfilter : null }}">
+                                        <input type='text' name='job_link' class="form-control" id='job_link' placeholder='Enter Upwork Job Link' value="{{ isset($job_link) ? $job_link : null }}">
                                     </td>
 									<td>
-                                       To <input type='text' name='dateto' data-date-format="yyyy-mm-dd" class="form-control" id='dateto' placeholder='Date to' value="{{ isset($datetofilter) ? $datetofilter : null }}">
+
+
+                                        <input type='text' data-date-format="yyyy-mm-dd" name='datefrom' class="form-control" id='datefrom' placeholder='Date From' value="{{ isset($datefromfilter) ? $datefromfilter : null }}">
+                                    </td>
+									<td>
+                                        <input type='text' name='dateto' data-date-format="yyyy-mm-dd" class="form-control" id='dateto' placeholder='Date to' value="{{ isset($datetofilter) ? $datetofilter : null }}">
                                     </td>
                                     <!--<td>
                                         <input type='text' class="form-control" id='upbm' placeholder='Enter UPBM Date'>
                                     </td>-->
-                                    <td><input type='submit' class="btn btn-primary" name="search_upbm" value="Search"></td>
+                                    <td><input type='submit' class="btn btn-primary" name="search_upbm" value="Search">&nbsp &nbsp <input type='button' onclick="clear_filters();" class="btn btn-primary" name="clear_filter" value="Clear All"></td>
 
                                 </tr>
 								  {!! Form::close() !!} 
@@ -91,6 +94,7 @@
                                         <th>Upwork Job Link </th>
                                         <th>Job Type </th>
                                         <th>Status </th>
+                                         <th>clients rating </th>
                                         <th>UPBM Date </th>
 						           
                                         
@@ -105,7 +109,8 @@
                                         <td>{{ upworkname_by_id($leads->upwork_id) }} </td>
                                         <td>{{ $leads->job_link }} </td>
                                         <td>{{ $leads->job_type }} </td>
-                                        <td>{{ $leads->lead_status }} </td>
+                                        <td>{{ $leads->status }} </td>
+                                        <td>{{ $leads->clientrating }} </td>
                                        
 										
                                          <td>{{ $leads->created_at }} </td>
@@ -141,6 +146,12 @@ $( function() {
   $( function() {
     $( "#dateto" ).datepicker();
   } );
+</script>
+<script>
+function clear_filters()
+{
+$('.form-control').val('');
+}
 </script>
 
 @endsection

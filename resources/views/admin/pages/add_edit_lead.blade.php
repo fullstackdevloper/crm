@@ -6,15 +6,7 @@
     
 <!-- Page Content -->
 <div class="content content-boxed">
-       <h1 class="user-head">
-                         {{ isset($leads->id) ? 'Edit Lead' : 'Add Lead' }}
-                            </h1>
-                        <ul class="dash-btn">
-                           
-                            <li class="active"><a  href="{{ URL::to('admin/leads/addnew') }}" >Add New</a></li>
-                          
-                            <li ><a class="{{classActivePath('adduser')}}" href="{{ URL::to('admin/leads') }}" >All leads</a></li>
-                            </ul>
+      
     <div class="row" >
         <div class="col-sm-12 col-lg-12" >
 		 <div class="block">
@@ -66,10 +58,10 @@
                                             <div class="col-md-9">
                                                 
                                                <select name="lead_status"  class="form-control " >
-                                                    <option <?php if(isset($leads->lead_status)){if($leads->lead_status=='New'){ echo 'selected'; }}?>>New</option>
-													<option <?php if(isset($leads->lead_status)){if($leads->lead_status=='Contacted'){ echo 'selected'; }}?>>Contacted</option>
-													<option <?php if(isset($leads->lead_status)){if($leads->lead_status=='Quote Sent'){ echo 'selected'; }}?>>Quote Sent</option>
-													<option <?php if(isset($leads->lead_status)){if($leads->lead_status=='Customer'){ echo 'selected'; }}?>>Customer </option>
+                                                    <option <?php if(isset($leads->status)){if($leads->status=='New'){ echo 'selected'; }}?>>New</option>
+													<option <?php if(isset($leads->status)){if($leads->status=='Contacted'){ echo 'selected'; }}?>>Contacted</option>
+													<option <?php if(isset($leads->status)){if($leads->status=='Quote Sent'){ echo 'selected'; }}?>>Quote Sent</option>
+													<option <?php if(isset($leads->status)){if($leads->status=='Customer'){ echo 'selected'; }}?>>Customer </option>
 													
                                                 </select>                                           
                                             </div>
@@ -175,6 +167,22 @@
                                             </div>
                                         </div>
                                         </div>
+                          <div class="col-sm-6 col-lg-6" >
+					<div class="form-group">
+                                            <label class="control-label col-md-3">
+                                               clients rating<span class="error" style="color: red;">*</span></label>
+                                            <div class="col-md-9">
+                                                
+                                               <select class="form-control" name='clientrating'>
+                                            <option value="New" <?php if(isset($leads->clientrating)){if($leads->clientrating=='New'){ echo 'selected'; }}?>>New Client</option>
+                                            <option value="Good" <?php if(isset($leads->clientrating)){if($leads->clientrating=='Good'){ echo 'selected'; }}?> >Good Client</option>
+					    <option value="Average" <?php if(isset($leads->clientrating)){if($leads->clientrating=='Average'){ echo 'selected'; }}?> >Average Client</option>
+					    <option value="Excellent" <?php if(isset($leads->clientrating)){if($leads->clientrating=='Excellent'){ echo 'selected'; }}?> >Excellent client </option>
+
+                                        </select>                                           
+                                            </div>
+                                        </div>
+                                   </div>
 										<div class="col-sm-6 col-lg-6" >
 										
 										<div class="form-group">

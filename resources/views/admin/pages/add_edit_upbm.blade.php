@@ -6,15 +6,7 @@
     
 <!-- Page Content -->
 <div class="content content-boxed">
-       <h1 class="user-head">
-                         {{ isset($upbms->id) ? 'Edit UPBM' : 'Add UPBM' }}
-                            </h1>
-                        <ul class="dash-btn">
-                           
-                            <li class="active"><a  href="{{ URL::to('admin/upbms/addnew') }}" >Add New</a></li>
-                          
-                            <li ><a class="{{classActivePath('adduser')}}" href="{{ URL::to('admin/upbms') }}" >All upbms</a></li>
-                            </ul>
+       
     <div class="row" >
         <div class="col-sm-12 col-lg-12" >
             <div class="block">
@@ -109,7 +101,20 @@
                                             </div>
                                         </div>
                                    
-                                 
+                                  <div class="form-group">
+                                            <label class="control-label col-md-2">
+                                                Clients Rating<span class="error" style="color: red;">*</span></label>
+                                            <div class="col-md-10">
+                                                
+                                               <select class="form-control" name='clientrating'>
+                                            <option value="New" <?php if(isset($upbms->clientrating)){if($upbms->clientrating=='New'){ echo 'selected'; }}?>>New Client</option>
+                                            <option value="Good" <?php if(isset($upbms->clientrating)){if($upbms->clientrating=='Good'){ echo 'selected'; }}?> >Good Client</option>
+					    <option value="Average" <?php if(isset($upbms->clientrating)){if($upbms->clientrating=='Average'){ echo 'selected'; }}?> >Average Client</option>
+					    <option value="Excellent" <?php if(isset($upbms->clientrating)){if($upbms->clientrating=='Excellent'){ echo 'selected'; }}?> >Excellent client </option>
+
+                                        </select>                                          
+                                            </div>
+                                        </div>
                              
                                     <div class="col-xs-12 col-md-4 col-sm-6">
                                         <div class="form-group">

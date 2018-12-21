@@ -41,24 +41,15 @@
 
                 <!-- Header Navigation Left -->
                 <ul class="nav-header pull-left">
-                    <li class="hidden-md hidden-lg">
-                        <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
-                        <button class="btn btn-default" data-toggle="layout" data-action="sidebar_toggle" type="button">
-                            <i class="fa fa-navicon"></i>
-                        </button>
-                    </li>
+                    
                     <li class="hidden-xs hidden-sm">
                         <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
                         <button class="btn btn-default" data-toggle="layout" data-action="sidebar_mini_toggle" type="button">
                             <i class="fa fa-ellipsis-v"></i>
                         </button>
                     </li>
-                    <li>
-                        <!-- Opens the Apps modal found at the bottom of the page, before including JS code -->
-                        <button class="btn btn-default pull-right" data-toggle="modal" data-target="#apps-modal" type="button">
-                            <i class="si si-grid"></i>
-                        </button>
-                    </li>
+					 <li><h3 class="heading_title"> <?php if(isset($heading_title)){echo $heading_title;}?><h3></li>
+                    
                      
                      
                 </ul>

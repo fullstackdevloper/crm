@@ -5,15 +5,7 @@
 		 
 				 <!-- Page Content -->
                 <div class="content">
-                       <h1 class="user-head">
-                               Leads
-                            </h1>
-                      <ul class="dash-btn">
-                           
-                            
-                          
-                            <li class="active"><a  href="{{ URL::to('bidder/leads') }}" >All leads</a></li>
-                            </ul>
+                      
                     <!-- Dynamic Table Full -->
                     <div class="block">
                         <div class="block-header">                            
@@ -58,15 +50,15 @@
 									<td>
 
 
-                                        From<input type='text' data-date-format="yyyy-mm-dd" name='datefrom' class="form-control" id='datefrom' placeholder='Date From' value="{{ isset($datefromfilter) ? $datefromfilter : null }}">
+                                        <input type='text' data-date-format="yyyy-mm-dd" name='datefrom' class="form-control" id='datefrom' placeholder='Date From' value="{{ isset($datefromfilter) ? $datefromfilter : null }}">
                                     </td>
 									<td>
-                                       To <input type='text' name='dateto' data-date-format="yyyy-mm-dd" class="form-control" id='dateto' placeholder='Date to' value="{{ isset($datetofilter) ? $datetofilter : null }}">
+                                        <input type='text' name='dateto' data-date-format="yyyy-mm-dd" class="form-control" id='dateto' placeholder='Date to' value="{{ isset($datetofilter) ? $datetofilter : null }}">
                                     </td>
                                     <!--<td>
                                         <input type='text' class="form-control" id='upbm' placeholder='Enter UPBM Date'>
                                     </td>-->
-                                    <td><input type='submit' class="btn btn-primary" name="search_upbm" value="Search"></td>
+                                    <td><input type='submit' class="btn btn-primary" name="search_upbm" value="Search"> &nbsp &nbsp <input type='button' onclick="clear_filters();" class="btn btn-primary" name="clear_filter" value="Clear All"></td>
 
                                 </tr>
 								  {!! Form::close() !!} 
@@ -81,6 +73,7 @@
                                         <th>Upwork Job Link </th>
                                         <th>Job Type </th>
                                         <th>Status </th>
+                                        <th>clients ratings </th>
                                         <th>UPBM Date </th>
 						           
                                         
@@ -96,7 +89,7 @@
                                         <td>{{ $leads->job_link }} </td>
                                         <td>{{ $leads->job_type }} </td>
                                         <td>{{ $leads->lead_status }} </td>
-                                       
+                                       <td>{{ $leads->clientrating }} </td>
 										 
                                          <td>{{ $leads->created_at }} </td>
                                                                
@@ -353,6 +346,12 @@ $( function() {
   $( function() {
     $( "#dateto" ).datepicker();
   } );
+</script>
+<script>
+function clear_filters()
+{
+$('.form-control').val('');
+}
 </script>
 
 @endsection

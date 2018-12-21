@@ -14,18 +14,19 @@ class UpbmController extends MainManagerController
     
     public function add_upbm(Request $request)
     {
+		$heading_title='Add New Upbm';
         if (!Auth::check() || Auth::user()->usertype != 'Manager') {
             return redirect('manager');
         }
-        return view('manager.pages.add_edit_upbm');
+        return view('manager.pages.add_edit_upbm',compact('heading_title'));
     }
     
     public function edit_upbm(Request $request)
     {
-        
+        $heading_title='Edit Upbm';
         $upbms = Upbm::findOrFail($request->id);
         
-        return view('manager.pages.add_edit_upbm', compact('upbms'));
+        return view('manager.pages.add_edit_upbm', compact('upbms','heading_title'));
     }
     public function addnew(Request $request)
     {
@@ -62,8 +63,9 @@ class UpbmController extends MainManagerController
         $Upbm->upwork_id  = $inputs['upwork_id'];
         $Upbm->job_link  = $inputs['job_link'];
         $Upbm->job_type  = $inputs['job_type'];
-		$Upbm->team  = $inputs['team'];
-        $Upbm->status= $inputs['status'];        
+	$Upbm->team  = $inputs['team'];
+        $Upbm->status= $inputs['status'];  
+        $Upbm->clientrating= $inputs['clientrating']; 
         $Upbm->save();
         
         
@@ -73,11 +75,12 @@ class UpbmController extends MainManagerController
     }
     public function allupbm(Request $request)
     {
+		$heading_title='All Upbm';
         if (!Auth::check() || Auth::user()->usertype != 'Manager') {
             return redirect('manager');
         }
         $allUser = Upbm::orderBy('id', 'desc')->where('team',Auth::user()->userrole)->where('status','Bid Placed')->get();
-        return view('manager.pages.view_upbms', compact('allUser'));
+        return view('manager.pages.view_upbms', compact('allUser','heading_title'));
     }
     
     public function deleteupbm(Request $request)
@@ -136,7 +139,8 @@ class UpbmController extends MainManagerController
 		}
 		if(empty($datetofilter))
 		{
-		 $dateto = date('Y-m-d');
+		  $dateto = date('Y-m-d');
+          $dateto = date('Y-m-d',strtotime($dateto . "+1 days"));
 		}
 		if(empty($upwork_id) && empty($jobtype)&& empty($job_link) && empty($created_by))
 		{ 
@@ -198,8 +202,8 @@ class UpbmController extends MainManagerController
 		}
 
 		
-		
-        return view('manager.pages.view_upbms', compact('allUser','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter'));
+		$heading_title='All Upbm';
+        return view('manager.pages.view_upbms', compact('allUser','upwork_id','jobtype','job_link','created_by','datefromfilter','datetofilter','heading_title'));
     }
     
     

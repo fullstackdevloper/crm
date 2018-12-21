@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>{{getcong('site_name')}} <</title>      
+        <title>{{getcong('site_name')}}<</title>      
          
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
 
@@ -41,46 +41,36 @@
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
         <!-- END Stylesheets -->
     </head>
-    <body>
+    <body style="background:url({{ URL::asset('upload/mcloud-awards.jpg')}}) no-repeat">
         <!-- Login Content -->
-        <div class="content overflow-hidden">
+        <div class="content overflow-hidden" style="padding-top: 50px!important; ">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
                     <!-- Login Block -->
                     <div class="block block-themed animated fadeIn">
                         <div class="block-header bg-primary">
                             
-                            <h3 class="block-title">PASSWORD REMINDER</h3>
+                            <h3 class="block-title"> Reset Password</h3>
                         </div>
                         <div class="block-content block-content-full block-content-narrow">
-                            <!-- Login Title -->
-                            
-                            @if(Session::has('flash_message'))
-                        <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span></button>
-                            {{ Session::get('flash_message') }}
-                        </div>
-                        @endif
-                        <div class="message">
-                            <!--{!! Html::ul($errors->all(), array('class'=>'alert alert-danger errors')) !!}-->
-                                @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span></button>
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                                
-                       </div>
-                            <!-- Login Form -->
-                            <!-- jQuery Validation (.js-validation-login class is initialized in js/pages/base_pages_login.js) -->
-                            <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
                            
+                            <div class="message">
+                                                <!--{!! Html::ul($errors->all(), array('class'=>'alert alert-danger errors')) !!}-->
+                                                    @if (count($errors) > 0)
+                                                <div class="alert alert-danger">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                                    
+                                                </div>
+                            
+                          
                                 {!! Form::open(array('url' => 'password/email','class'=>'js-validation-login form-horizontal push-30-t push-50','id'=>'passwordform','role'=>'form')) !!}
                                <div class="form-group">
                                     <label for="email">Reset password</label>
@@ -102,7 +92,7 @@
 
         <!-- Login Footer -->
         <div class="push-10-t text-center animated fadeInUp">
-            <small class="text-muted font-w600"><span class="js-year-copy"></span> &copy; MANAGEMENT</small>
+           
         </div>
         <!-- END Login Footer -->
 
